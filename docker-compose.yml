@@ -1,7 +1,23 @@
-version: 3
+version: '3'
 
 services:
   postgres:
     image: postgres:alpine
 
   redis:
+    image: redis:alpine
+
+  jupyter:
+    build:
+      context: .
+      dockerfile: DockerfileJupyter
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./data:/data
+      - ./output:/output
+      - ./notebooks:/notebooks
+      - ./config/datacube.conf:/root/.datacube.conf
+      - ./config/datacube_integration.conf:/root/.datacube_integration.conf
+    shm_size: 1g
+    command: jupyter notebook --allow-root --ip="*"

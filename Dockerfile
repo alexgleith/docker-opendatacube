@@ -4,6 +4,8 @@ RUN apt update && apt install -y wget
 WORKDIR /opt
 RUN wget "https://github.com/opendatacube/datacube-core/archive/develop.zip" -O /tmp/odc.zip
 
+ENV LC_ALL C.UTF-8
+
 RUN apt install -y unzip
 RUN unzip /tmp/odc.zip
 

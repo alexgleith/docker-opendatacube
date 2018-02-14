@@ -1,6 +1,8 @@
 FROM odc:local
 
-RUN apt update && apt python3-pip install -y ipython ipython-notebook
-RUN pip3 install jupyter
+RUN apt update && apt install -y python3-pip ipython ipython-notebook
+RUN pip3 install jupyter matplotlib
+
+WORKDIR /opt/opendatacube/examples/notebooks
 
 CMD jupyter notebook
