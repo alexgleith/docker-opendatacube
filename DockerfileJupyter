@@ -1,0 +1,6 @@
+FROM odc:local
+
+RUN apt update && apt python3-pip install -y ipython ipython-notebook
+RUN pip3 install jupyter
+
+CMD jupyter notebook
