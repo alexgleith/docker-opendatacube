@@ -1,14 +1,31 @@
-build:
+build-core:
 	docker build -t odc:local .
 
-build-jupyter:
+build-odc-jupyter:
 	docker build -t odc-jupyter:local --file DockerfileJupyter .
+
+build:
+	docker-compose build
 
 up:
 	docker-compose up
 
-createdb:
-	docker-compose exec postgres createdb -U postgres agdcintegration
+odc-cmd:
+	docker-compose exec opendatacube bash
 
-integration:
-	docker-compose exec jupyter bash -c "cd /opt/opendatacube/ && ./check-code.sh integration_tests/"
+# Prepare the database
+initdb:
+	docker-compose exec opendatacube datacube -v system init
+
+# Load test data
+load-test:
+	docker-compose exec opendatacube /data-scripts/load-test.sh
+
+# Test the system
+test: create-db integration-tests
+
+create-db:
+	docker-compose exec postgres createdb -U postgres odcintegration
+
+integration-tests:
+	docker-compose exec opendatacube bash -c "cd /opt/opendatacube/ && ./check-code.sh integration_tests/"
