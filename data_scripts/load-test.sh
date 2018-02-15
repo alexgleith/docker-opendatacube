@@ -19,5 +19,5 @@ sed s#'/media/simonaoliver/datacube/tiles'#'/output'#g -i /tmp/ls5_nbar_albers.y
 sed s#'/media/simonaoliver/datacube/tiles'#'/output'#g -i /tmp/ls5_pq_albers.yaml
 
 #Ingest the data (set multiproc in relation to your CPUs)
-datacube -v ingest -c /tmp/ls5_nbar_albers.yaml --executor multiproc 2
-datacube -v ingest -c /tmp/ls5_pq_albers.yaml --executor multiproc 2
+datacube -v ingest -c /tmp/ls5_nbar_albers.yaml --executor multiproc $(nproc)
+datacube -v ingest -c /tmp/ls5_pq_albers.yaml --executor multiproc $(nproc)
