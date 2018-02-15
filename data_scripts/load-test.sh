@@ -6,7 +6,7 @@ INSTALL_DIR=/opt/opendatacube
 datacube product add $INSTALL_DIR/docs/config_samples/dataset_types/ls5_scenes.yaml
 
 #Create catalogue of input dataset (agdc-metadata.yaml)
-python $INSTALL_DIR/utils/galsprepare.py /data/lbg/LS5_TM_NBAR*
+python3 $INSTALL_DIR/utils/galsprepare.py /data/lbg/LS5_TM_NBAR*
 
 #Index input dataset into DB (expect warnings because of pixel quality data)
 datacube dataset add --auto-match /data/lbg/LS5*

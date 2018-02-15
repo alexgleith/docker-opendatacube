@@ -22,7 +22,7 @@ initdb:
 
 # Load test data
 load-test:
-	docker-compose exec opendatacube /data-scripts/load-test.sh
+	docker-compose exec opendatacube /data_scripts/load-test.sh
 
 # Test the system
 test: create-db integration-tests
@@ -33,3 +33,6 @@ create-db:
 integration-tests:
 	docker-compose exec opendatacube bash -c "cd /opt/opendatacube/ && ./check-code.sh integration_tests/"
 
+# Clean up
+clean:
+	docker-compose rm -f
