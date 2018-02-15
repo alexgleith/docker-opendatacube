@@ -1,11 +1,14 @@
 build-core:
-	docker build -t odc:local .
+	docker build -t alexgleith/opendatacube .
 
 build-odc-jupyter:
 	docker build -t odc-jupyter:local --file DockerfileJupyter .
 
 build:
 	docker-compose build
+
+push:
+	docker push alexgleith/opendatacube
 
 up:
 	docker-compose up
@@ -29,3 +32,4 @@ create-db:
 
 integration-tests:
 	docker-compose exec opendatacube bash -c "cd /opt/opendatacube/ && ./check-code.sh integration_tests/"
+
